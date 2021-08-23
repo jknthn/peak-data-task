@@ -11,7 +11,7 @@ class Name:
     full: Optional[str]
     initial: str
 
-    def __init__(self, full: Optional[str], initial: Optional[str] = None, parse_dash: bool = False):
+    def __init__(self, full: Optional[str], initial: Optional[str] = None):
         if not full and not initial:
             raise ValueError
 
