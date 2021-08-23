@@ -64,6 +64,11 @@ def test_good_initial_dashed():
     assert name.initial == "j-t"
 
 
+def test_is_full():
+    assert not Name(full=None, initial="j-t").is_full()
+    assert Name(full="jeremi-tomasz").is_full()
+
+
 def test_wrong_initials_dashed():
     with pytest.raises(ValueError):
         _ = Name(full="jeremi-tomasz", initial="k")
@@ -73,3 +78,10 @@ def test_wrong_initials_dashed():
         _ = Name(full="jeremi-tomasz", initial="b-t")
     with pytest.raises(ValueError):
         _ = Name(full="jeremi-tomasz", initial="b-b")
+
+
+def test_from_raw():
+    assert Name("jeremi") == Name.from_raw("jeremi")
+    assert Name(None, "j") == Name.from_raw("j")
+    assert Name("jeremi-tomasz") == Name.from_raw("jeremi-tomasz")
+    assert Name("j-t") == Name.from_raw("j-t")
